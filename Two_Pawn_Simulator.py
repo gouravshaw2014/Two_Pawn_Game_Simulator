@@ -1,5 +1,7 @@
 from dataclasses import dataclass, field
 from typing import Set, Dict, List, Union
+import matplotlib.pyplot as plt
+from test_networkx import draw_game_state
 
 @dataclass(frozen=True)
 class GameState:
@@ -58,7 +60,14 @@ class PawnGame:
                         actions.append(f"move {neighbor}")
             if self.grabbing_rule == 'optional-grabbing':
                 for pawn in opponent_pawns: actions.append(f"grab {pawn}")
-        return actions
+
+        # Deterministic ordering of actions for consistent UX across runs
+        def _action_key(a: str):
+            parts = a.split()
+            cmd = parts[0]
+            arg = parts[1] if len(parts) > 1 else ''
+            return (cmd, arg)
+        return sorted(actions, key=_action_key)
 
     def apply_action(self, state: GameState, action: str) -> GameState:
         parts = action.strip().split()
@@ -117,6 +126,13 @@ def run_interactive_session(game_config):
     
     turn = 1
     while not engine.is_win(state):
+        if draw_game_state is not None:
+            try:
+                draw_game_state(engine.graph, engine.ownership, state)
+            except Exception as _e:
+                # Continue without visualization
+                pass
+
         print(f"\nTurn {turn}")
         print(f"  P1 Pos: {state.p1_pos} | P2 Pos: {state.p2_pos}")
         print(f"  P1 Pawns: {sorted(list(state.p1_pawns))} | P2 Pawns: {sorted(list(state.p2_pawns))}")
@@ -124,7 +140,8 @@ def run_interactive_session(game_config):
         
         valid_actions = engine.get_valid_actions(state)
         if not valid_actions:
-            print("No valid actions available. Game ends in a stalemate.")
+            print("No valid actions available for P1.\n")
+            print("P2 wins.")
             break
             
         print("Valid actions:", valid_actions)
@@ -132,6 +149,7 @@ def run_interactive_session(game_config):
         for i, act in enumerate(valid_actions, 1):
             print(f"  {i}. {act}")
 
+        # Keep the visualization displayed until the next input is provided
         action_input = input("Enter your action (or number): ").strip()
         valid_actions_canonical = [a.lower() for a in valid_actions]
         chosen_action = None
@@ -149,6 +167,16 @@ def run_interactive_session(game_config):
         print(f"\nAction taken: {state.message}")
         if state.phase != 'k_grab' or state.current_player != 1:
             turn += 1
+
+    # Final draw when game ends (win or stalemate), to reflect terminal state
+    status_text = "P1 wins." if engine.is_win(state) else "P2 wins."
+    if draw_game_state is not None:
+        try:
+            draw_game_state(engine.graph, engine.ownership, state, status=status_text)
+            # Keep the final image open for 5 seconds
+            plt.pause(5)
+        except Exception:
+            pass
 
     if engine.is_win(state):
         print(" P1 wins.")
