@@ -166,6 +166,12 @@ def build_game_configuration_interactively():
                   'D': [], 
                   'Target': [] }
     
+    # If we can do the graph generation dynamically.
+        # graph input code from gfg.
+        # make UI for adjacency list, to form the lists from data taken by the user.
+        # make an image which updates after each moves, which would show the progression of the graph as the user adds edges. Also, show the color of pawns which both the players have while the game goes on.
+        
+
     initial_state_config = { 'start_vertex': 'Start', 'p1_initial_pawns': {'Red', 'Blue', 'Green'}, 'p2_initial_pawns': set() }
     
     # Predefined Ownership Models
