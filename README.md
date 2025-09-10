@@ -1,11 +1,11 @@
-# 🎮 Two Pawn Game Simulator
+#  Two Pawn Game Simulator
 
 A **pawn-based reachability game simulator** inspired by *A Game of Pawns* (CONCUR 2023).  
 The simulator models a pawn game with multiple variants of **pawn ownership** and **grabbing mechanisms**, allowing exploration of game dynamics, strategy outcomes, and player interactions.
 
 ---
 
-## 📖 Game Definition
+## Game Definition
 
 A pawn game with `d ∈ ℕ` pawns is defined as:
 
@@ -15,12 +15,12 @@ A pawn game with `d ∈ ℕ` pawns is defined as:
 - **T** → Target vertices. Player 1 wins if they reach any vertex in `T`.  
 - **M** → Mechanism for exchanging pawns.  
 
-👉 Strategies are **memoryless** (sufficient for reachability objectives).  
-👉 The pawns a player controls upon reaching `T` do **not** affect victory.  
+ Strategies are **memoryless** (sufficient for reachability objectives).  
+The pawns a player controls upon reaching `T` do **not** affect victory.  
 
 ---
 
-## 🧩 Classes of Pawn Games
+##  Classes of Pawn Games
 
 1. **OVPP (One Vertex Per Pawn)**  
    - One-to-one correspondence between pawns and vertices.  
@@ -36,7 +36,7 @@ A pawn game with `d ∈ ℕ` pawns is defined as:
 
 ---
 
-## 🔄 Pawn Exchange Mechanisms (M)
+##  Pawn Exchange Mechanisms (M)
 
 The simulator supports multiple rules for **grabbing/giving pawns**:
 
@@ -56,7 +56,7 @@ The simulator supports multiple rules for **grabbing/giving pawns**:
 
 ---
 
-## ⚙️ Features
+## Features
 
 - Simulates **turn-based pawn games** with different grabbing modes.  
 - Supports **OVPP, MVPP, OMVPP** ownership structures.  
