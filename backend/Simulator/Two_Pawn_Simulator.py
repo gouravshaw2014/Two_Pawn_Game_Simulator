@@ -1,7 +1,8 @@
 from dataclasses import dataclass, field
 from typing import Set, Dict, List, Union
 import matplotlib.pyplot as plt
-from test_networkx import draw_game_state
+from .test_networkx import draw_game_state
+
 
 @dataclass(frozen=True)
 class GameState:
@@ -30,7 +31,8 @@ class PawnGame:
                 self.ownership[vertex] = set(pawns)
 
     def get_initial_state(self, start_vertex: str, p1_initial_pawns: Set[str], p2_initial_pawns: Set[str]) -> GameState:
-        return GameState('Start', None, p1_initial_pawns, p2_initial_pawns, 1)
+        return GameState(start_vertex, None, p1_initial_pawns, p2_initial_pawns, 1)
+
 
     def is_win(self, state: GameState) -> bool:
         target_pawns = self.ownership.get(self.target_vertex, set())

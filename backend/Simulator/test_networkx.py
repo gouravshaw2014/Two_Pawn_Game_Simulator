@@ -2,6 +2,9 @@ import networkx as nx
 import matplotlib.pyplot as plt
 from typing import Dict, List, Set, Union
 
+
+global engine, _pos_cache, _current_fig, _current_ax
+
 #  manage persistent figure between updates
 _current_fig = None
 _current_ax = None
