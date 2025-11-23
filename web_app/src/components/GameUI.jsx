@@ -1,149 +1,3 @@
-// import { useEffect, useState } from "react";
-// import axios from "axios";
-// import { API_BASE_URL } from "../api";
-
-// export default function GameUI() {
-//   const [state, setState] = useState(null);
-//   const [actions, setActions] = useState([]);
-//   const [image, setImage] = useState(null);
-//   const [loading, setLoading] = useState(false);
-
-//   // Load initial state from localStorage
-//   useEffect(() => {
-//     const saved = localStorage.getItem("game_state");
-//     if (saved) {
-//       const data = JSON.parse(saved);
-//       setState(data.state);
-//       setActions(data.valid_actions);
-//       setImage(data.image);
-//     }
-//   }, []);
-
-//   const sendAction = async (action) => {
-//     setLoading(true);
-//     try {
-//       const res = await axios.post(`${API_BASE_URL}/action`, { action });
-//       const newState = res.data.state;
-
-//       setState(newState);
-//       setActions(res.data.valid_actions);
-//       setImage(res.data.image);
-
-//       // WIN CHECKS HERE ⬇⬇⬇
-
-//       // P1 WIN CONDITION: reached target & holds its pawn
-//       if (
-//         String(newState.p1_pos) ===
-//         String(localStorage.getItem("target_vertex"))
-//       ) {
-//         setActions([]); // disable all buttons
-//         return;
-//       }
-
-//       // P2 WIN CONDITION: no valid actions left
-//       if (res.data.valid_actions.length === 0) {
-//         setActions([]); // disable all buttons
-//         return;
-//       }
-//     } catch (err) {
-//       console.error(err);
-//       alert("Action failed");
-//     }
-//     setLoading(false);
-//   };
-
-//   if (!state)
-//     return <p className="text-center mt-10 text-gray-500">Loading game...</p>;
-
-//   return (
-//     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
-//       {/* LEFT SIDE - GRAPH IMAGE */}
-//       <div className="bg-white shadow rounded-2xl p-4 flex items-center justify-center">
-//         {image ? (
-//           <img
-//             src={`data:image/png;base64,${image}`}
-//             alt="Game State"
-//             className="rounded-xl shadow"
-//           />
-//         ) : (
-//           <p className="text-gray-500">Loading image...</p>
-//         )}
-//       </div>
-
-//       {/* RIGHT SIDE */}
-//       <div className="flex flex-col gap-4">
-//         {/* CURRENT STATE */}
-//         <div className="bg-white shadow rounded-2xl p-4">
-//           <h2 className="font-semibold mb-2">Current State</h2>
-//           <p>
-//             <strong>P1 Position:</strong> {state.p1_pos}
-//           </p>
-//           <p>
-//             <strong>P1 Pawns:</strong> {state.p1_pawns.join(", ") || "None"}
-//           </p>
-//           <p>
-//             <strong>P2 Position:</strong> {state.p2_pos || "None"}
-//           </p>
-//           <p>
-//             <strong>P2 Pawns:</strong> {state.p2_pawns.join(", ") || "None"}
-//           </p>
-//           <p>
-//             <strong>Turn:</strong> Player {state.current_player}
-//           </p>
-//           <p>
-//             <strong>Phase:</strong> {state.phase}
-//           </p>
-//           {state.message && (
-//             <p className="text-blue-600 mt-2">{state.message}</p>
-//           )}
-//         </div>
-
-//         {/* VALID ACTIONS */}
-//         <div className="bg-white shadow rounded-2xl p-4">
-//           <h2 className="font-semibold mb-2">Valid Actions</h2>
-//           <div className="flex flex-wrap gap-2">
-//             {actions.length === 0 && (
-//               <p className="text-red-600">No valid actions</p>
-//             )}
-
-//             {actions.map((act) => (
-//               <button
-//                 key={act}
-//                 disabled={loading}
-//                 onClick={() => sendAction(act)}
-//                 className="bg-blue-600 text-white px-3 py-1 rounded-lg hover:bg-blue-700"
-//               >
-//                 {act}
-//               </button>
-//             ))}
-//           </div>
-//         </div>
-
-//         {/* GAME LOG */}
-//         <div className="bg-white shadow rounded-2xl p-4">
-//           <h2 className="font-semibold mb-2">Game Log</h2>
-//           <ul className="text-sm space-y-1">
-//             <li>{state.message}</li>
-//           </ul>
-//         </div>
-
-//         {/* WIN/LOSE MESSAGES */}
-//         {actions.length === 0 && state.phase === "move" && (
-//           <div className="bg-red-100 text-red-700 p-4 font-bold rounded-xl text-center">
-//             P2 Wins! (No valid actions)
-//           </div>
-//         )}
-
-//         {String(state.p1_pos) ===
-//           String(localStorage.getItem("target_vertex")) && (
-//           <div className="bg-green-100 text-green-700 p-4 font-bold rounded-xl text-center">
-//             🎉 P1 Wins! (Reached Target)
-//           </div>
-//         )}
-//       </div>
-//     </div>
-//   );
-// }
 
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -267,7 +121,12 @@ export default function GameUI() {
       {/* MAIN LAYOUT */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full mt-4">
         {/* LEFT — GRAPH IMAGE */}
-        <div className="bg-white shadow-lg rounded-xl p-3 flex items-center justify-center border border-slate-200">
+        <div className="bg-white shadow-lg rounded-xl p-3 border border-slate-200 grid-cols-1  gap-y-3">
+          <div className="flex items-center justify-center">
+            <h1 className="text-2xl font-semibold text-slate-800 mb-4">
+              Game Canvas
+            </h1>
+          </div>
           {image ? (
             <img
               src={`data:image/png;base64,${image}`}
