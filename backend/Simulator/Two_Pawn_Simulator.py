@@ -60,8 +60,13 @@ class PawnGame:
                     pawns_needed = self.ownership.get(neighbor, set())
                     if any(p in player_pawns for p in pawns_needed):
                         actions.append(f"move {neighbor}")
-            if self.grabbing_rule == 'optional-grabbing':
-                for pawn in opponent_pawns: actions.append(f"grab {pawn}")
+            if self.grabbing_rule == 'optional-grabbing' and state.current_player == 2:
+            # grabbing is allowed but OPTIONAL
+                for pawn in opponent_pawns:
+                    actions.append(f"grab {pawn}")
+
+            # NEW: skip option to avoid grabbing anything
+                actions.append("skip")
 
         # Deterministic ordering of actions for consistent UX across runs
         def _action_key(a: str):
@@ -113,7 +118,12 @@ class PawnGame:
             else: return state
         elif command == "pass" and state.phase == 'k_grab':
             message = "Player 1 passes their remaining grabs."; next_player = 2
+
+        elif command == "skip":
+            message = "Player 2 skips their turn."; next_player = 1
         else: return state
+       
+
         return GameState(p1_pos, p2_pos, p1_pawns, p2_pawns, next_player, next_phase, k_grabs_made, message)
 
 def run_interactive_session(game_config):
