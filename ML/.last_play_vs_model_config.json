@@ -1,0 +1,51 @@
+{
+  "rules": {
+    "graph": {
+      "A": [
+        "B",
+        "D"
+      ],
+      "B": [
+        "C",
+        "E"
+      ],
+      "C": [
+        "E"
+      ],
+      "D": [],
+      "E": []
+    },
+    "pawn_ownership": {
+      "A": [
+        "Red"
+      ],
+      "B": [
+        "Blue"
+      ],
+      "C": [
+        "Red"
+      ],
+      "D": [
+        "Blue"
+      ],
+      "E": [
+        "Green"
+      ]
+    },
+    "target_vertex": "D",
+    "grabbing_rule": "always-grabbing",
+    "k_grab_limit": 0
+  },
+  "initial": {
+    "start_vertex": "A",
+    "p1_initial_pawns": [
+      "Blue",
+      "Green",
+      "Red"
+    ],
+    "p2_initial_pawns": []
+  },
+  "metadata": {
+    "ownership_mechanism": "MVPP"
+  }
+}

@@ -2,3 +2,4 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+ML/datasets/data_iter100000/game_configs.jsonl

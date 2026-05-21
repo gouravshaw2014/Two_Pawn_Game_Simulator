@@ -138,7 +138,8 @@ def _compute_positions(G: Union[nx.Graph, nx.DiGraph]):
 def draw_game_state(graph: Dict[str, List[str]],
                     ownership: Dict[str, Union[str, Set[str]]],
                     state,
-                    status: str = None) -> plt.Figure:
+                    status: str = None,
+                    target_vertex: str = None) -> plt.Figure:
     """
     Draw the current game graph with colored vertices and overlay text showing
     what colors P1 and P2 have.
@@ -235,6 +236,23 @@ def draw_game_state(graph: Dict[str, List[str]],
     # if p2_pos:
     #     nx.draw_networkx_nodes(G, pos, nodelist=[p2_pos], node_size=1000, node_color='none', edgecolors='cyan', linewidths=3, ax=ax)
 
+    if target_vertex and target_vertex in pos:
+        tx, ty = pos[target_vertex]
+        y_values = [coord[1] for coord in pos.values()]
+        y_span = max(y_values) - min(y_values) if y_values else 1.0
+        offset = max(0.25, 0.06 * y_span)
+        ax.text(
+            tx,
+            ty - offset,
+            "Target",
+            ha='center',
+            va='top',
+            fontsize=10,
+            fontweight='bold',
+            color='black',
+            bbox=dict(boxstyle='round,pad=0.2', facecolor='white', alpha=0.8, edgecolor='none')
+        )
+
     ax.set_axis_off()
 
     # Two lines of overlay text for players' current pawn colors
@@ -271,7 +289,7 @@ def draw_game_state(graph: Dict[str, List[str]],
         if _status_text_artist is not None:
             _status_text_artist.set_text("")
 
-    plt.tight_layout()
+    _current_fig.subplots_adjust(left=0.05, right=0.95, top=0.90, bottom=0.08)
     # Update the existing window without blocking
     _current_fig.canvas.draw_idle()
     _current_fig.canvas.flush_events()

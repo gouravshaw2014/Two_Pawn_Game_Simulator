@@ -1,7 +1,20 @@
 from dataclasses import dataclass, field
-from typing import Set, Dict, List, Union
+from typing import Set, Dict, List, Union, Callable, Optional, Tuple
 import matplotlib.pyplot as plt
-from test_networkx import draw_game_state
+try:
+    from .test_networkx import draw_game_state
+except ImportError:
+    try:
+        from Simulator.test_networkx import draw_game_state
+    except ImportError:
+        from test_networkx import draw_game_state
+try:
+    from .Graph_Generator import build_graph_interactively
+except ImportError:
+    try:
+        from Simulator.Graph_Generator import build_graph_interactively
+    except ImportError:
+        from Graph_Generator import build_graph_interactively
 
 @dataclass(frozen=True)
 class GameState:
@@ -30,7 +43,7 @@ class PawnGame:
                 self.ownership[vertex] = set(pawns)
 
     def get_initial_state(self, start_vertex: str, p1_initial_pawns: Set[str], p2_initial_pawns: Set[str]) -> GameState:
-        return GameState('Start', None, p1_initial_pawns, p2_initial_pawns, 1)
+        return GameState(start_vertex, None, p1_initial_pawns, p2_initial_pawns, 1)
 
     def is_win(self, state: GameState) -> bool:
         target_pawns = self.ownership.get(self.target_vertex, set())
@@ -114,7 +127,26 @@ class PawnGame:
         else: return state
         return GameState(p1_pos, p2_pos, p1_pawns, p2_pawns, next_player, next_phase, k_grabs_made, message)
 
-def run_interactive_session(game_config):
+def _resolve_human_action(valid_actions: List[str]) -> Optional[str]:
+    action_input = input("Enter your action (or number): ").strip()
+    valid_actions_canonical = [a.lower() for a in valid_actions]
+    chosen_action = None
+    if action_input.isdigit():
+        idx_num = int(action_input)
+        if 1 <= idx_num <= len(valid_actions):
+            chosen_action = valid_actions[idx_num - 1]
+    if chosen_action is None:
+        if action_input.lower() not in valid_actions_canonical:
+            return None
+        chosen_action = valid_actions[valid_actions_canonical.index(action_input.lower())]
+    return chosen_action
+
+
+def run_interactive_session(
+    game_config,
+    human_player: int = 1,
+    automated_action_selector: Optional[Callable[[PawnGame, GameState, List[str], int], Union[str, Tuple[str, str], None]]] = None,
+):
 
     engine = PawnGame(**game_config['rules'])
     state = engine.get_initial_state(**game_config['initial'])
@@ -128,7 +160,7 @@ def run_interactive_session(game_config):
     while not engine.is_win(state):
         if draw_game_state is not None:
             try:
-                draw_game_state(engine.graph, engine.ownership, state)
+                draw_game_state(engine.graph, engine.ownership, state, target_vertex=engine.target_vertex)
             except Exception as _e:
                 # Continue without visualization
                 pass
@@ -149,19 +181,29 @@ def run_interactive_session(game_config):
         for i, act in enumerate(valid_actions, 1):
             print(f"  {i}. {act}")
 
-        # Keep the visualization displayed until the next input is provided
-        action_input = input("Enter your action (or number): ").strip()
-        valid_actions_canonical = [a.lower() for a in valid_actions]
-        chosen_action = None
-        if action_input.isdigit():
-            idx_num = int(action_input)
-            if 1 <= idx_num <= len(valid_actions):
-                chosen_action = valid_actions[idx_num - 1]
-        if chosen_action is None:
-            if action_input.lower() not in valid_actions_canonical:
+        should_use_automated = automated_action_selector is not None and state.current_player != human_player
+
+        if should_use_automated:
+            selector_result = automated_action_selector(engine, state, valid_actions, turn)
+            selector_note = None
+            if isinstance(selector_result, tuple):
+                chosen_action, selector_note = selector_result
+            else:
+                chosen_action = selector_result
+
+            if chosen_action not in valid_actions:
+                print("Automated action selector returned an invalid action.")
+                print("P2 wins.")
+                break
+            if selector_note:
+                print(selector_note)
+            else:
+                print(f"Automated action: {chosen_action}")
+        else:
+            chosen_action = _resolve_human_action(valid_actions)
+            if chosen_action is None:
                 print("INVALID ACTION")
                 continue
-            chosen_action = valid_actions[valid_actions_canonical.index(action_input.lower())]
 
         state = engine.apply_action(state, chosen_action)
         print(f"\nAction taken: {state.message}")
@@ -172,7 +214,7 @@ def run_interactive_session(game_config):
     status_text = "P1 wins." if engine.is_win(state) else "P2 wins."
     if draw_game_state is not None:
         try:
-            draw_game_state(engine.graph, engine.ownership, state, status=status_text)
+            draw_game_state(engine.graph, engine.ownership, state, status=status_text, target_vertex=engine.target_vertex)
             # Keep the final image open for 5 seconds
             plt.pause(5)
         except Exception:
@@ -184,29 +226,16 @@ def run_interactive_session(game_config):
 
 def build_game_configuration_interactively():
     """Asks the user for game rules and builds the configuration dictionary."""
-    
-    # Base Game Data
-    base_graph = { 'Start': ['A', 'B'], 
-                  'A': ['C', 'E'], 
-                  'B': ['E'], 
-                  'C': [], 
-                  'E': ['Target', 'D'], 
-                  'D': [], 
-                  'Target': [] }
-    
-    # If we can do the graph generation dynamically.
-        # graph input code from gfg.
-        # make UI for adjacency list, to form the lists from data taken by the user.
-        # make an image which updates after each moves, which would show the progression of the graph as the user adds edges. Also, show the color of pawns which both the players have while the game goes on.
-        
+    graph_data = build_graph_interactively()
+    base_graph = graph_data['graph']
+    start_vertex = graph_data['start_vertex']
+    target_vertex = graph_data['target_vertex']
+    selected_ownership = graph_data['ownership_map']
 
-    initial_state_config = { 'start_vertex': 'Start', 'p1_initial_pawns': {'Red', 'Blue', 'Green'}, 'p2_initial_pawns': set() }
-    
-    # Predefined Ownership Models
-    ownerships = {
-        "1": ("One Vertex per Pawn (OVPP)", {'Start': 'Meta', 'A': 'Red', 'B': 'Blue', 'C':'Red', 'D':'Blue', 'E':'Green', 'Target':'Green'}),
-        "2": ("Multiple Vertices per Pawn (MVPP)", {'A': 'Red', 'C': 'Red', 'B': 'Blue', 'D': 'Blue', 'E': 'Green', 'Target': 'Green'}),
-        "3": ("Overlapping Multiple Vertices (OMVPP)", {'A': 'Red', 'C': 'Red', 'B': 'Blue', 'D': 'Blue', 'E': {'Green', 'Blue'}, 'Target': 'Green'})
+    initial_state_config = {
+        'start_vertex': start_vertex,
+        'p1_initial_pawns': {'Red', 'Blue', 'Green'},
+        'p2_initial_pawns': set()
     }
 
     # Predefined Grabbing Rules 
@@ -219,16 +248,13 @@ def build_game_configuration_interactively():
 
     # Setup
     print("--- Build Your Pawn Game Configuration ---")
-    
-    # 1. Choose Ownership Model
-    print("\nStep 1: Choose an Ownership of Vertices model:")
-    for key, (name, _) in ownerships.items():
-        print(f"  {key}: {name}")
-    choice = input("Enter your choice (1-3): ")
-    selected_ownership = ownerships.get(choice, ownerships["2"])[1] # Default to MVPP
 
-    # 2. Choose Grabbing Mechanism
-    print("\nStep 2: Choose a Grabbing Mechanism:")
+    target_requirements = set(selected_ownership.get(target_vertex, set()))
+    if not target_requirements:
+        selected_ownership[target_vertex] = {'Green'}
+
+    # 1. Choose Grabbing Mechanism
+    print("\nStep 1: Choose a Grabbing Mechanism:")
     for key, name in grabbing_rules.items():
         print(f"  {key}: {name.replace('-', ' ').title()}")
     choice = input("Enter your choice (1-4): ")
@@ -252,11 +278,14 @@ def build_game_configuration_interactively():
         'rules': {
             'graph': base_graph,
             'pawn_ownership': selected_ownership,
-            'target_vertex': 'Target',
+            'target_vertex': target_vertex,
             'grabbing_rule': selected_grabbing,
             'k_grab_limit': k_limit
         },
-        'initial': initial_state_config
+        'initial': initial_state_config,
+        'metadata': {
+            'ownership_mechanism': graph_data.get('ownership_preset', 'MVPP')
+        }
     }
     return final_config
 
