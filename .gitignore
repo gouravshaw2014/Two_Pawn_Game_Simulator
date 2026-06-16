@@ -3,3 +3,6 @@ __pycache__/
 *.pyo
 *.pyd
 ML/datasets/data_iter100000/game_configs.jsonl
+ML/datasets/data_iter100000/logs/
+RL/runs/
+RL/.last_play_vs_rl_config.json
