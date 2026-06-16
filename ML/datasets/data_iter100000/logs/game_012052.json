@@ -1,0 +1,113 @@
+{
+  "iteration": 12052,
+  "seed": 42,
+  "config": {
+    "vertex_count": 5,
+    "edge_probability": 0.33040933434476905,
+    "vertices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "edges_numeric": [
+      [
+        1,
+        4
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        5,
+        3
+      ],
+      [
+        5,
+        4
+      ]
+    ],
+    "target_index": 4,
+    "target_vertex": "D",
+    "grabbing_rule": "always-grabbing-or-giving",
+    "k_grab_limit": 0,
+    "ownership_mechanism": "OMVPP",
+    "ownership_color_groups": {
+      "Red": [
+        2,
+        3
+      ],
+      "Blue": [
+        1,
+        2,
+        4
+      ],
+      "Green": [
+        5
+      ]
+    }
+  },
+  "result": {
+    "winner": "P1",
+    "termination": "p1_reached_target",
+    "turns": 1,
+    "final_state": {
+      "p1_pos": "D",
+      "p2_pos": null,
+      "p1_pawns": [
+        "Blue",
+        "Green",
+        "Red"
+      ],
+      "p2_pawns": [],
+      "current_player": 2,
+      "phase": "grab_or_give"
+    }
+  },
+  "steps": [
+    {
+      "turn": 1,
+      "valid_actions": [
+        "move D"
+      ],
+      "action": "move D",
+      "before": {
+        "p1_pos": "A",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Green",
+          "Red"
+        ],
+        "p2_pawns": [],
+        "current_player": 1,
+        "phase": "move",
+        "k_grabs_made": 0
+      },
+      "after": {
+        "p1_pos": "D",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Green",
+          "Red"
+        ],
+        "p2_pawns": [],
+        "current_player": 2,
+        "phase": "grab_or_give",
+        "k_grabs_made": 0,
+        "message": "Player 1 moves to D. Now Player 2 MUST grab or give a pawn."
+      }
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "iteration": 13741,
+  "seed": 42,
+  "config": {
+    "vertex_count": 6,
+    "edge_probability": 0.374856058312681,
+    "vertices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F"
+    ],
+    "edges_numeric": [
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        1,
+        6
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        3,
+        6
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        5,
+        4
+      ],
+      [
+        5,
+        6
+      ]
+    ],
+    "target_index": 6,
+    "target_vertex": "F",
+    "grabbing_rule": "k-grabbing",
+    "k_grab_limit": 3,
+    "ownership_mechanism": "OMVPP",
+    "ownership_color_groups": {
+      "Red": [
+        1,
+        2,
+        5,
+        6
+      ],
+      "Blue": [
+        4,
+        6
+      ],
+      "Green": [
+        1,
+        3,
+        4,
+        5
+      ]
+    }
+  },
+  "result": {
+    "winner": "P2",
+    "termination": "no_valid_actions",
+    "turns": 1,
+    "final_state": {
+      "p1_pos": "C",
+      "p2_pos": null,
+      "p1_pawns": [
+        "Blue",
+        "Green",
+        "Red"
+      ],
+      "p2_pawns": [],
+      "current_player": 2,
+      "phase": "move"
+    }
+  },
+  "steps": [
+    {
+      "turn": 1,
+      "valid_actions": [
+        "move C",
+        "move E",
+        "move F"
+      ],
+      "action": "move C",
+      "before": {
+        "p1_pos": "A",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Green",
+          "Red"
+        ],
+        "p2_pawns": [],
+        "current_player": 1,
+        "phase": "move",
+        "k_grabs_made": 0
+      },
+      "after": {
+        "p1_pos": "C",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Green",
+          "Red"
+        ],
+        "p2_pawns": [],
+        "current_player": 2,
+        "phase": "move",
+        "k_grabs_made": 0,
+        "message": "Player 1 moves to C."
+      }
+    }
+  ]
+}

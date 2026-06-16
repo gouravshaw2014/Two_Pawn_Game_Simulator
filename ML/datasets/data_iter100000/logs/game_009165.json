@@ -1,0 +1,254 @@
+{
+  "iteration": 9165,
+  "seed": 42,
+  "config": {
+    "vertex_count": 13,
+    "edge_probability": 0.2487370728695898,
+    "vertices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M"
+    ],
+    "edges_numeric": [
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        1,
+        9
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        2,
+        13
+      ],
+      [
+        3,
+        13
+      ],
+      [
+        4,
+        7
+      ],
+      [
+        4,
+        13
+      ],
+      [
+        5,
+        3
+      ],
+      [
+        5,
+        4
+      ],
+      [
+        5,
+        10
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        6,
+        5
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        6,
+        9
+      ],
+      [
+        6,
+        11
+      ],
+      [
+        6,
+        13
+      ],
+      [
+        8,
+        1
+      ],
+      [
+        8,
+        4
+      ],
+      [
+        8,
+        7
+      ],
+      [
+        8,
+        10
+      ],
+      [
+        8,
+        12
+      ],
+      [
+        9,
+        3
+      ],
+      [
+        9,
+        6
+      ],
+      [
+        10,
+        5
+      ],
+      [
+        10,
+        7
+      ],
+      [
+        10,
+        11
+      ],
+      [
+        11,
+        5
+      ],
+      [
+        11,
+        8
+      ],
+      [
+        11,
+        12
+      ],
+      [
+        11,
+        13
+      ],
+      [
+        12,
+        1
+      ],
+      [
+        12,
+        3
+      ],
+      [
+        12,
+        4
+      ],
+      [
+        12,
+        7
+      ],
+      [
+        12,
+        10
+      ],
+      [
+        13,
+        3
+      ]
+    ],
+    "target_index": 2,
+    "target_vertex": "B",
+    "grabbing_rule": "optional-grabbing",
+    "k_grab_limit": 0,
+    "ownership_mechanism": "MVPP",
+    "ownership_color_groups": {
+      "Red": [
+        3,
+        5,
+        11,
+        12
+      ],
+      "Blue": [
+        4,
+        7,
+        9,
+        10
+      ],
+      "Green": [
+        1,
+        2,
+        6,
+        8,
+        13
+      ]
+    }
+  },
+  "result": {
+    "winner": "P1",
+    "termination": "p1_reached_target",
+    "turns": 1,
+    "final_state": {
+      "p1_pos": "B",
+      "p2_pos": null,
+      "p1_pawns": [
+        "Blue",
+        "Green",
+        "Red"
+      ],
+      "p2_pawns": [],
+      "current_player": 2,
+      "phase": "move"
+    }
+  },
+  "steps": [
+    {
+      "turn": 1,
+      "valid_actions": [
+        "move B",
+        "move D",
+        "move I"
+      ],
+      "action": "move B",
+      "before": {
+        "p1_pos": "A",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Green",
+          "Red"
+        ],
+        "p2_pawns": [],
+        "current_player": 1,
+        "phase": "move",
+        "k_grabs_made": 0
+      },
+      "after": {
+        "p1_pos": "B",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Green",
+          "Red"
+        ],
+        "p2_pawns": [],
+        "current_player": 2,
+        "phase": "move",
+        "k_grabs_made": 0,
+        "message": "Player 1 moves to B."
+      }
+    }
+  ]
+}

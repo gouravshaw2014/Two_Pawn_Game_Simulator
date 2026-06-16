@@ -1,0 +1,9 @@
+{
+  "accuracy": 0.9850950636889395,
+  "classification_report": "              precision    recall  f1-score   support\n\n           0       0.99      1.00      0.99    757808\n           1       0.90      0.45      0.60     19250\n\n    accuracy                           0.99    777058\n   macro avg       0.95      0.72      0.79    777058\nweighted avg       0.98      0.99      0.98    777058\n",
+  "rows": 3885288,
+  "test_size": 0.2,
+  "random_state": 42,
+  "dataset": "ML\\datasets\\data_iter100000\\states_dataset.csv",
+  "model_path": "ML\\models\\data_iter100000\\pawn_outcome_model.joblib"
+}

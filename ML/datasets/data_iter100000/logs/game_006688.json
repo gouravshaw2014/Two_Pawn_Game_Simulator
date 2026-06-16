@@ -1,0 +1,175 @@
+{
+  "iteration": 6688,
+  "seed": 42,
+  "config": {
+    "vertex_count": 11,
+    "edge_probability": 0.1942276890349453,
+    "vertices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "edges_numeric": [
+      [
+        1,
+        7
+      ],
+      [
+        1,
+        11
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        2,
+        8
+      ],
+      [
+        2,
+        9
+      ],
+      [
+        2,
+        10
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        3,
+        7
+      ],
+      [
+        5,
+        3
+      ],
+      [
+        6,
+        1
+      ],
+      [
+        6,
+        3
+      ],
+      [
+        7,
+        5
+      ],
+      [
+        7,
+        6
+      ],
+      [
+        8,
+        4
+      ],
+      [
+        8,
+        6
+      ],
+      [
+        11,
+        7
+      ],
+      [
+        11,
+        8
+      ],
+      [
+        11,
+        10
+      ]
+    ],
+    "target_index": 7,
+    "target_vertex": "G",
+    "grabbing_rule": "optional-grabbing",
+    "k_grab_limit": 0,
+    "ownership_mechanism": "OMVPP",
+    "ownership_color_groups": {
+      "Red": [
+        5,
+        6,
+        7,
+        9,
+        10
+      ],
+      "Blue": [
+        7,
+        11
+      ],
+      "Green": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        8
+      ]
+    }
+  },
+  "result": {
+    "winner": "P1",
+    "termination": "p1_reached_target",
+    "turns": 1,
+    "final_state": {
+      "p1_pos": "G",
+      "p2_pos": null,
+      "p1_pawns": [
+        "Blue",
+        "Green",
+        "Red"
+      ],
+      "p2_pawns": [],
+      "current_player": 2,
+      "phase": "move"
+    }
+  },
+  "steps": [
+    {
+      "turn": 1,
+      "valid_actions": [
+        "move G",
+        "move K"
+      ],
+      "action": "move G",
+      "before": {
+        "p1_pos": "A",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Green",
+          "Red"
+        ],
+        "p2_pawns": [],
+        "current_player": 1,
+        "phase": "move",
+        "k_grabs_made": 0
+      },
+      "after": {
+        "p1_pos": "G",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Green",
+          "Red"
+        ],
+        "p2_pawns": [],
+        "current_player": 2,
+        "phase": "move",
+        "k_grabs_made": 0,
+        "message": "Player 1 moves to G."
+      }
+    }
+  ]
+}

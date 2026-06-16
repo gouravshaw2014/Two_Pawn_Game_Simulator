@@ -1,0 +1,728 @@
+{
+  "iteration": 2994,
+  "seed": 42,
+  "config": {
+    "vertex_count": 8,
+    "edge_probability": 0.22824753440256942,
+    "vertices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "edges_numeric": [
+      [
+        1,
+        4
+      ],
+      [
+        1,
+        7
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        3,
+        5
+      ],
+      [
+        5,
+        7
+      ],
+      [
+        6,
+        5
+      ],
+      [
+        7,
+        5
+      ],
+      [
+        7,
+        6
+      ]
+    ],
+    "target_index": 5,
+    "target_vertex": "E",
+    "grabbing_rule": "optional-grabbing",
+    "k_grab_limit": 0,
+    "ownership_mechanism": "OMVPP",
+    "ownership_color_groups": {
+      "Red": [
+        3,
+        6
+      ],
+      "Blue": [
+        5,
+        8
+      ],
+      "Green": [
+        1,
+        2,
+        4,
+        6,
+        7
+      ]
+    }
+  },
+  "result": {
+    "winner": "P1",
+    "termination": "p1_reached_target",
+    "turns": 17,
+    "final_state": {
+      "p1_pos": "E",
+      "p2_pos": null,
+      "p1_pawns": [
+        "Blue"
+      ],
+      "p2_pawns": [
+        "Green",
+        "Red"
+      ],
+      "current_player": 2,
+      "phase": "move"
+    }
+  },
+  "steps": [
+    {
+      "turn": 1,
+      "valid_actions": [
+        "move D",
+        "move G"
+      ],
+      "action": "move G",
+      "before": {
+        "p1_pos": "A",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Green",
+          "Red"
+        ],
+        "p2_pawns": [],
+        "current_player": 1,
+        "phase": "move",
+        "k_grabs_made": 0
+      },
+      "after": {
+        "p1_pos": "G",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Green",
+          "Red"
+        ],
+        "p2_pawns": [],
+        "current_player": 2,
+        "phase": "move",
+        "k_grabs_made": 0,
+        "message": "Player 1 moves to G."
+      }
+    },
+    {
+      "turn": 2,
+      "valid_actions": [
+        "grab Blue",
+        "grab Green",
+        "grab Red"
+      ],
+      "action": "grab Red",
+      "before": {
+        "p1_pos": "G",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Green",
+          "Red"
+        ],
+        "p2_pawns": [],
+        "current_player": 2,
+        "phase": "move",
+        "k_grabs_made": 0
+      },
+      "after": {
+        "p1_pos": "G",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Green"
+        ],
+        "p2_pawns": [
+          "Red"
+        ],
+        "current_player": 1,
+        "phase": "move",
+        "k_grabs_made": 0,
+        "message": "Player 2 grabs the 'Red' pawn."
+      }
+    },
+    {
+      "turn": 3,
+      "valid_actions": [
+        "grab Red",
+        "move E",
+        "move F"
+      ],
+      "action": "move F",
+      "before": {
+        "p1_pos": "G",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Green"
+        ],
+        "p2_pawns": [
+          "Red"
+        ],
+        "current_player": 1,
+        "phase": "move",
+        "k_grabs_made": 0
+      },
+      "after": {
+        "p1_pos": "F",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Green"
+        ],
+        "p2_pawns": [
+          "Red"
+        ],
+        "current_player": 2,
+        "phase": "move",
+        "k_grabs_made": 0,
+        "message": "Player 1 moves to F."
+      }
+    },
+    {
+      "turn": 4,
+      "valid_actions": [
+        "grab Blue",
+        "grab Green"
+      ],
+      "action": "grab Blue",
+      "before": {
+        "p1_pos": "F",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Green"
+        ],
+        "p2_pawns": [
+          "Red"
+        ],
+        "current_player": 2,
+        "phase": "move",
+        "k_grabs_made": 0
+      },
+      "after": {
+        "p1_pos": "F",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Green"
+        ],
+        "p2_pawns": [
+          "Blue",
+          "Red"
+        ],
+        "current_player": 1,
+        "phase": "move",
+        "k_grabs_made": 0,
+        "message": "Player 2 grabs the 'Blue' pawn."
+      }
+    },
+    {
+      "turn": 5,
+      "valid_actions": [
+        "grab Blue",
+        "grab Red"
+      ],
+      "action": "grab Red",
+      "before": {
+        "p1_pos": "F",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Green"
+        ],
+        "p2_pawns": [
+          "Blue",
+          "Red"
+        ],
+        "current_player": 1,
+        "phase": "move",
+        "k_grabs_made": 0
+      },
+      "after": {
+        "p1_pos": "F",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Green",
+          "Red"
+        ],
+        "p2_pawns": [
+          "Blue"
+        ],
+        "current_player": 2,
+        "phase": "move",
+        "k_grabs_made": 0,
+        "message": "Player 1 grabs the 'Red' pawn."
+      }
+    },
+    {
+      "turn": 6,
+      "valid_actions": [
+        "grab Green",
+        "grab Red"
+      ],
+      "action": "grab Red",
+      "before": {
+        "p1_pos": "F",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Green",
+          "Red"
+        ],
+        "p2_pawns": [
+          "Blue"
+        ],
+        "current_player": 2,
+        "phase": "move",
+        "k_grabs_made": 0
+      },
+      "after": {
+        "p1_pos": "F",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Green"
+        ],
+        "p2_pawns": [
+          "Blue",
+          "Red"
+        ],
+        "current_player": 1,
+        "phase": "move",
+        "k_grabs_made": 0,
+        "message": "Player 2 grabs the 'Red' pawn."
+      }
+    },
+    {
+      "turn": 7,
+      "valid_actions": [
+        "grab Blue",
+        "grab Red"
+      ],
+      "action": "grab Blue",
+      "before": {
+        "p1_pos": "F",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Green"
+        ],
+        "p2_pawns": [
+          "Blue",
+          "Red"
+        ],
+        "current_player": 1,
+        "phase": "move",
+        "k_grabs_made": 0
+      },
+      "after": {
+        "p1_pos": "F",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Green"
+        ],
+        "p2_pawns": [
+          "Red"
+        ],
+        "current_player": 2,
+        "phase": "move",
+        "k_grabs_made": 0,
+        "message": "Player 1 grabs the 'Blue' pawn."
+      }
+    },
+    {
+      "turn": 8,
+      "valid_actions": [
+        "grab Blue",
+        "grab Green"
+      ],
+      "action": "grab Blue",
+      "before": {
+        "p1_pos": "F",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Green"
+        ],
+        "p2_pawns": [
+          "Red"
+        ],
+        "current_player": 2,
+        "phase": "move",
+        "k_grabs_made": 0
+      },
+      "after": {
+        "p1_pos": "F",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Green"
+        ],
+        "p2_pawns": [
+          "Blue",
+          "Red"
+        ],
+        "current_player": 1,
+        "phase": "move",
+        "k_grabs_made": 0,
+        "message": "Player 2 grabs the 'Blue' pawn."
+      }
+    },
+    {
+      "turn": 9,
+      "valid_actions": [
+        "grab Blue",
+        "grab Red"
+      ],
+      "action": "grab Blue",
+      "before": {
+        "p1_pos": "F",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Green"
+        ],
+        "p2_pawns": [
+          "Blue",
+          "Red"
+        ],
+        "current_player": 1,
+        "phase": "move",
+        "k_grabs_made": 0
+      },
+      "after": {
+        "p1_pos": "F",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Green"
+        ],
+        "p2_pawns": [
+          "Red"
+        ],
+        "current_player": 2,
+        "phase": "move",
+        "k_grabs_made": 0,
+        "message": "Player 1 grabs the 'Blue' pawn."
+      }
+    },
+    {
+      "turn": 10,
+      "valid_actions": [
+        "grab Blue",
+        "grab Green"
+      ],
+      "action": "grab Green",
+      "before": {
+        "p1_pos": "F",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Green"
+        ],
+        "p2_pawns": [
+          "Red"
+        ],
+        "current_player": 2,
+        "phase": "move",
+        "k_grabs_made": 0
+      },
+      "after": {
+        "p1_pos": "F",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue"
+        ],
+        "p2_pawns": [
+          "Green",
+          "Red"
+        ],
+        "current_player": 1,
+        "phase": "move",
+        "k_grabs_made": 0,
+        "message": "Player 2 grabs the 'Green' pawn."
+      }
+    },
+    {
+      "turn": 11,
+      "valid_actions": [
+        "grab Green",
+        "grab Red",
+        "move E"
+      ],
+      "action": "grab Red",
+      "before": {
+        "p1_pos": "F",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue"
+        ],
+        "p2_pawns": [
+          "Green",
+          "Red"
+        ],
+        "current_player": 1,
+        "phase": "move",
+        "k_grabs_made": 0
+      },
+      "after": {
+        "p1_pos": "F",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Red"
+        ],
+        "p2_pawns": [
+          "Green"
+        ],
+        "current_player": 2,
+        "phase": "move",
+        "k_grabs_made": 0,
+        "message": "Player 1 grabs the 'Red' pawn."
+      }
+    },
+    {
+      "turn": 12,
+      "valid_actions": [
+        "grab Blue",
+        "grab Red"
+      ],
+      "action": "grab Blue",
+      "before": {
+        "p1_pos": "F",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Red"
+        ],
+        "p2_pawns": [
+          "Green"
+        ],
+        "current_player": 2,
+        "phase": "move",
+        "k_grabs_made": 0
+      },
+      "after": {
+        "p1_pos": "F",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Red"
+        ],
+        "p2_pawns": [
+          "Blue",
+          "Green"
+        ],
+        "current_player": 1,
+        "phase": "move",
+        "k_grabs_made": 0,
+        "message": "Player 2 grabs the 'Blue' pawn."
+      }
+    },
+    {
+      "turn": 13,
+      "valid_actions": [
+        "grab Blue",
+        "grab Green"
+      ],
+      "action": "grab Green",
+      "before": {
+        "p1_pos": "F",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Red"
+        ],
+        "p2_pawns": [
+          "Blue",
+          "Green"
+        ],
+        "current_player": 1,
+        "phase": "move",
+        "k_grabs_made": 0
+      },
+      "after": {
+        "p1_pos": "F",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Green",
+          "Red"
+        ],
+        "p2_pawns": [
+          "Blue"
+        ],
+        "current_player": 2,
+        "phase": "move",
+        "k_grabs_made": 0,
+        "message": "Player 1 grabs the 'Green' pawn."
+      }
+    },
+    {
+      "turn": 14,
+      "valid_actions": [
+        "grab Green",
+        "grab Red"
+      ],
+      "action": "grab Green",
+      "before": {
+        "p1_pos": "F",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Green",
+          "Red"
+        ],
+        "p2_pawns": [
+          "Blue"
+        ],
+        "current_player": 2,
+        "phase": "move",
+        "k_grabs_made": 0
+      },
+      "after": {
+        "p1_pos": "F",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Red"
+        ],
+        "p2_pawns": [
+          "Blue",
+          "Green"
+        ],
+        "current_player": 1,
+        "phase": "move",
+        "k_grabs_made": 0,
+        "message": "Player 2 grabs the 'Green' pawn."
+      }
+    },
+    {
+      "turn": 15,
+      "valid_actions": [
+        "grab Blue",
+        "grab Green"
+      ],
+      "action": "grab Blue",
+      "before": {
+        "p1_pos": "F",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Red"
+        ],
+        "p2_pawns": [
+          "Blue",
+          "Green"
+        ],
+        "current_player": 1,
+        "phase": "move",
+        "k_grabs_made": 0
+      },
+      "after": {
+        "p1_pos": "F",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Red"
+        ],
+        "p2_pawns": [
+          "Green"
+        ],
+        "current_player": 2,
+        "phase": "move",
+        "k_grabs_made": 0,
+        "message": "Player 1 grabs the 'Blue' pawn."
+      }
+    },
+    {
+      "turn": 16,
+      "valid_actions": [
+        "grab Blue",
+        "grab Red"
+      ],
+      "action": "grab Red",
+      "before": {
+        "p1_pos": "F",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Red"
+        ],
+        "p2_pawns": [
+          "Green"
+        ],
+        "current_player": 2,
+        "phase": "move",
+        "k_grabs_made": 0
+      },
+      "after": {
+        "p1_pos": "F",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue"
+        ],
+        "p2_pawns": [
+          "Green",
+          "Red"
+        ],
+        "current_player": 1,
+        "phase": "move",
+        "k_grabs_made": 0,
+        "message": "Player 2 grabs the 'Red' pawn."
+      }
+    },
+    {
+      "turn": 17,
+      "valid_actions": [
+        "grab Green",
+        "grab Red",
+        "move E"
+      ],
+      "action": "move E",
+      "before": {
+        "p1_pos": "F",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue"
+        ],
+        "p2_pawns": [
+          "Green",
+          "Red"
+        ],
+        "current_player": 1,
+        "phase": "move",
+        "k_grabs_made": 0
+      },
+      "after": {
+        "p1_pos": "E",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue"
+        ],
+        "p2_pawns": [
+          "Green",
+          "Red"
+        ],
+        "current_player": 2,
+        "phase": "move",
+        "k_grabs_made": 0,
+        "message": "Player 1 moves to E."
+      }
+    }
+  ]
+}

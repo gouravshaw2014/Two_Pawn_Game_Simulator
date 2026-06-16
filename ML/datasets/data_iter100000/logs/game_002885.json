@@ -1,0 +1,134 @@
+{
+  "iteration": 2885,
+  "seed": 42,
+  "config": {
+    "vertex_count": 7,
+    "edge_probability": 0.3209004540883435,
+    "vertices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "edges_numeric": [
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        6
+      ],
+      [
+        1,
+        7
+      ],
+      [
+        2,
+        6
+      ],
+      [
+        3,
+        6
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        4,
+        7
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        7,
+        6
+      ]
+    ],
+    "target_index": 6,
+    "target_vertex": "F",
+    "grabbing_rule": "always-grabbing",
+    "k_grab_limit": 0,
+    "ownership_mechanism": "MVPP",
+    "ownership_color_groups": {
+      "Red": [
+        2
+      ],
+      "Blue": [
+        1,
+        4
+      ],
+      "Green": [
+        3,
+        5,
+        6,
+        7
+      ]
+    }
+  },
+  "result": {
+    "winner": "P1",
+    "termination": "p1_reached_target",
+    "turns": 1,
+    "final_state": {
+      "p1_pos": "F",
+      "p2_pos": null,
+      "p1_pawns": [
+        "Blue",
+        "Green",
+        "Red"
+      ],
+      "p2_pawns": [],
+      "current_player": 2,
+      "phase": "grab"
+    }
+  },
+  "steps": [
+    {
+      "turn": 1,
+      "valid_actions": [
+        "move C",
+        "move F",
+        "move G"
+      ],
+      "action": "move F",
+      "before": {
+        "p1_pos": "A",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Green",
+          "Red"
+        ],
+        "p2_pawns": [],
+        "current_player": 1,
+        "phase": "move",
+        "k_grabs_made": 0
+      },
+      "after": {
+        "p1_pos": "F",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Green",
+          "Red"
+        ],
+        "p2_pawns": [],
+        "current_player": 2,
+        "phase": "grab",
+        "k_grabs_made": 0,
+        "message": "Player 1 moves to F. Now Player 2 MUST grab a pawn."
+      }
+    }
+  ]
+}

@@ -1,0 +1,198 @@
+{
+  "iteration": 14037,
+  "seed": 42,
+  "config": {
+    "vertex_count": 5,
+    "edge_probability": 0.33539267386308863,
+    "vertices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "edges_numeric": [
+      [
+        1,
+        4
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        3,
+        5
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        5,
+        1
+      ],
+      [
+        5,
+        4
+      ]
+    ],
+    "target_index": 2,
+    "target_vertex": "B",
+    "grabbing_rule": "always-grabbing-or-giving",
+    "k_grab_limit": 0,
+    "ownership_mechanism": "OMVPP",
+    "ownership_color_groups": {
+      "Red": [
+        2,
+        4
+      ],
+      "Blue": [
+        2,
+        5
+      ],
+      "Green": [
+        1,
+        3,
+        4,
+        5
+      ]
+    }
+  },
+  "result": {
+    "winner": "P1",
+    "termination": "p1_reached_target",
+    "turns": 3,
+    "final_state": {
+      "p1_pos": "B",
+      "p2_pos": null,
+      "p1_pawns": [
+        "Blue",
+        "Green"
+      ],
+      "p2_pawns": [
+        "Red"
+      ],
+      "current_player": 2,
+      "phase": "grab_or_give"
+    }
+  },
+  "steps": [
+    {
+      "turn": 1,
+      "valid_actions": [
+        "move D"
+      ],
+      "action": "move D",
+      "before": {
+        "p1_pos": "A",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Green",
+          "Red"
+        ],
+        "p2_pawns": [],
+        "current_player": 1,
+        "phase": "move",
+        "k_grabs_made": 0
+      },
+      "after": {
+        "p1_pos": "D",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Green",
+          "Red"
+        ],
+        "p2_pawns": [],
+        "current_player": 2,
+        "phase": "grab_or_give",
+        "k_grabs_made": 0,
+        "message": "Player 1 moves to D. Now Player 2 MUST grab or give a pawn."
+      }
+    },
+    {
+      "turn": 2,
+      "valid_actions": [
+        "grab Blue",
+        "grab Green",
+        "grab Red"
+      ],
+      "action": "grab Red",
+      "before": {
+        "p1_pos": "D",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Green",
+          "Red"
+        ],
+        "p2_pawns": [],
+        "current_player": 2,
+        "phase": "grab_or_give",
+        "k_grabs_made": 0
+      },
+      "after": {
+        "p1_pos": "D",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Green"
+        ],
+        "p2_pawns": [
+          "Red"
+        ],
+        "current_player": 1,
+        "phase": "move",
+        "k_grabs_made": 0,
+        "message": "Player 2 grabs the 'Red' pawn."
+      }
+    },
+    {
+      "turn": 3,
+      "valid_actions": [
+        "move B",
+        "move E"
+      ],
+      "action": "move B",
+      "before": {
+        "p1_pos": "D",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Green"
+        ],
+        "p2_pawns": [
+          "Red"
+        ],
+        "current_player": 1,
+        "phase": "move",
+        "k_grabs_made": 0
+      },
+      "after": {
+        "p1_pos": "B",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Green"
+        ],
+        "p2_pawns": [
+          "Red"
+        ],
+        "current_player": 2,
+        "phase": "grab_or_give",
+        "k_grabs_made": 0,
+        "message": "Player 1 moves to B. Now Player 2 MUST grab or give a pawn."
+      }
+    }
+  ]
+}

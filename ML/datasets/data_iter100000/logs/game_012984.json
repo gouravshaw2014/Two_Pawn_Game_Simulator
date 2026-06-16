@@ -1,0 +1,119 @@
+{
+  "iteration": 12984,
+  "seed": 42,
+  "config": {
+    "vertex_count": 5,
+    "edge_probability": 0.30445457667778186,
+    "vertices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "edges_numeric": [
+      [
+        1,
+        4
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        5,
+        1
+      ]
+    ],
+    "target_index": 4,
+    "target_vertex": "D",
+    "grabbing_rule": "optional-grabbing",
+    "k_grab_limit": 0,
+    "ownership_mechanism": "OMVPP",
+    "ownership_color_groups": {
+      "Red": [
+        3,
+        4
+      ],
+      "Blue": [
+        1,
+        5
+      ],
+      "Green": [
+        2,
+        4,
+        5
+      ]
+    }
+  },
+  "result": {
+    "winner": "P1",
+    "termination": "p1_reached_target",
+    "turns": 1,
+    "final_state": {
+      "p1_pos": "D",
+      "p2_pos": null,
+      "p1_pawns": [
+        "Blue",
+        "Green",
+        "Red"
+      ],
+      "p2_pawns": [],
+      "current_player": 2,
+      "phase": "move"
+    }
+  },
+  "steps": [
+    {
+      "turn": 1,
+      "valid_actions": [
+        "move D",
+        "move E"
+      ],
+      "action": "move D",
+      "before": {
+        "p1_pos": "A",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Green",
+          "Red"
+        ],
+        "p2_pawns": [],
+        "current_player": 1,
+        "phase": "move",
+        "k_grabs_made": 0
+      },
+      "after": {
+        "p1_pos": "D",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Green",
+          "Red"
+        ],
+        "p2_pawns": [],
+        "current_player": 2,
+        "phase": "move",
+        "k_grabs_made": 0,
+        "message": "Player 1 moves to D."
+      }
+    }
+  ]
+}

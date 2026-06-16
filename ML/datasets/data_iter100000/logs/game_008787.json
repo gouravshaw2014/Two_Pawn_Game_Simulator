@@ -1,0 +1,183 @@
+{
+  "iteration": 8787,
+  "seed": 42,
+  "config": {
+    "vertex_count": 10,
+    "edge_probability": 0.21205083603197913,
+    "vertices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "edges_numeric": [
+      [
+        1,
+        8
+      ],
+      [
+        1,
+        10
+      ],
+      [
+        2,
+        8
+      ],
+      [
+        2,
+        9
+      ],
+      [
+        3,
+        6
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        5,
+        4
+      ],
+      [
+        5,
+        8
+      ],
+      [
+        6,
+        1
+      ],
+      [
+        6,
+        5
+      ],
+      [
+        6,
+        8
+      ],
+      [
+        7,
+        1
+      ],
+      [
+        7,
+        5
+      ],
+      [
+        8,
+        1
+      ],
+      [
+        8,
+        7
+      ],
+      [
+        9,
+        2
+      ],
+      [
+        9,
+        7
+      ],
+      [
+        10,
+        1
+      ],
+      [
+        10,
+        6
+      ],
+      [
+        10,
+        7
+      ],
+      [
+        10,
+        8
+      ]
+    ],
+    "target_index": 8,
+    "target_vertex": "H",
+    "grabbing_rule": "k-grabbing",
+    "k_grab_limit": 3,
+    "ownership_mechanism": "MVPP",
+    "ownership_color_groups": {
+      "Red": [
+        3,
+        4,
+        5,
+        8
+      ],
+      "Blue": [
+        7,
+        10
+      ],
+      "Green": [
+        1,
+        2,
+        6,
+        9
+      ]
+    }
+  },
+  "result": {
+    "winner": "P2",
+    "termination": "no_valid_actions",
+    "turns": 1,
+    "final_state": {
+      "p1_pos": "J",
+      "p2_pos": null,
+      "p1_pawns": [
+        "Blue",
+        "Green",
+        "Red"
+      ],
+      "p2_pawns": [],
+      "current_player": 2,
+      "phase": "move"
+    }
+  },
+  "steps": [
+    {
+      "turn": 1,
+      "valid_actions": [
+        "move H",
+        "move J"
+      ],
+      "action": "move J",
+      "before": {
+        "p1_pos": "A",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Green",
+          "Red"
+        ],
+        "p2_pawns": [],
+        "current_player": 1,
+        "phase": "move",
+        "k_grabs_made": 0
+      },
+      "after": {
+        "p1_pos": "J",
+        "p2_pos": null,
+        "p1_pawns": [
+          "Blue",
+          "Green",
+          "Red"
+        ],
+        "p2_pawns": [],
+        "current_player": 2,
+        "phase": "move",
+        "k_grabs_made": 0,
+        "message": "Player 1 moves to J."
+      }
+    }
+  ]
+}
