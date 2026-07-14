@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_BASE_URL } from "../api";
+import AISettings from "./AISettings";
 
 export default function ConfigForm() {
   const navigate = useNavigate();
@@ -18,11 +19,8 @@ export default function ConfigForm() {
     [0, 0, 0, 0, 0, 1, 0, 0],
     [0, 0, 0, 0, 0, 0, 1, 1],
     [0, 0, 0, 0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0]
-
+    [0, 0, 0, 0, 0, 0, 0, 0],
   ];
-
-
 
   const DEFAULT_VERTEX_COLORS = [
     "Red",
@@ -32,7 +30,7 @@ export default function ConfigForm() {
     "Blue",
     "Green",
     "Blue",
-    "Green"
+    "Green",
   ];
 
   const inputBox =
@@ -51,8 +49,8 @@ export default function ConfigForm() {
   const [startVertex, setStartVertex] = useState("0");
   const [targetVertex, setTargetVertex] = useState("7");
 
-  const [p1Pawns, setP1Pawns] = useState(["Red", "Green"]);
-  const [p2Pawns, setP2Pawns] = useState(["Blue"]);
+  const [p1Pawns, setP1Pawns] = useState(["Blue", "Green"]);
+  const [p2Pawns, setP2Pawns] = useState(["Red"]);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -69,7 +67,7 @@ export default function ConfigForm() {
 
     const vc = Array.from(
       { length: nodeCount },
-      (_, i) => DEFAULT_VERTEX_COLORS[i]
+      (_, i) => DEFAULT_VERTEX_COLORS[i],
     );
     setVertexColors(vc);
   }, []);
@@ -109,12 +107,12 @@ export default function ConfigForm() {
 
   const toggleP1Pawn = (color) =>
     setP1Pawns((prev) =>
-      prev.includes(color) ? prev.filter((c) => c !== color) : [...prev, color]
+      prev.includes(color) ? prev.filter((c) => c !== color) : [...prev, color],
     );
 
   const toggleP2Pawn = (color) =>
     setP2Pawns((prev) =>
-      prev.includes(color) ? prev.filter((c) => c !== color) : [...prev, color]
+      prev.includes(color) ? prev.filter((c) => c !== color) : [...prev, color],
     );
 
   const handleSubmit = async (e) => {
@@ -473,6 +471,9 @@ export default function ConfigForm() {
           </div>
         </div>
       </div>
+
+      {/* AI SETTINGS */}
+      <AISettings />
 
       {error && <p className="text-red-500 text-center font-medium">{error}</p>}
       <div className="flex justify-center">

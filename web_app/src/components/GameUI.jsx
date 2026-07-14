@@ -1,11 +1,11 @@
-
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { API_BASE_URL } from "../api";
 import { useNavigate } from "react-router-dom";
+import AIPanel from "./AIPanel";
+import { evaluateAllActions } from "../api";
 
 export default function GameUI() {
-
   const navigate = useNavigate();
   const [state, setState] = useState(null);
   const [actions, setActions] = useState([]);
@@ -14,6 +14,12 @@ export default function GameUI() {
 
   // NEW: continuous log
   const [log, setLog] = useState([]);
+
+  // NEW: AI state
+  const [aiEnabled, setAIEnabled] = useState(
+    localStorage.getItem("ai_enabled") === "true",
+  );
+  const [actionEvaluations, setActionEvaluations] = useState({});
 
   // Load initial game state
   useEffect(() => {
@@ -30,6 +36,26 @@ export default function GameUI() {
       }
     }
   }, []);
+
+  // Fetch AI evaluations when state or actions change
+  useEffect(() => {
+    if (aiEnabled && actions.length > 0 && state) {
+      fetchActionEvaluations();
+    }
+  }, [state, actions, aiEnabled]);
+
+  const fetchActionEvaluations = async () => {
+    try {
+      const res = await evaluateAllActions();
+      const evals = {};
+      res.data.evaluations?.forEach((e) => {
+        evals[e.action] = e.win_probability;
+      });
+      setActionEvaluations(evals);
+    } catch (err) {
+      console.warn("Could not fetch action evaluations:", err);
+    }
+  };
 
   const sendAction = async (action) => {
     setLoading(true);
@@ -78,6 +104,9 @@ export default function GameUI() {
     String(state.p1_pos) === String(localStorage.getItem("target_vertex"));
 
   const p2Win = actions.length === 0 && state.phase === "move";
+
+  // Handle close button after winning or losing
+  const handleCloseButton = () => {};
 
   return (
     <div className="relative w-full">
@@ -223,7 +252,12 @@ export default function GameUI() {
           {/* ACTIONS */}
           <div className="bg-white shadow-lg rounded-xl p-5 border border-slate-200">
             <h2 className="text-lg font-semibold text-slate-800 mb-3">
-              Actions
+              Actions{" "}
+              {aiEnabled &&
+              actionEvaluations &&
+              Object.keys(actionEvaluations).length > 0
+                ? "🤖"
+                : ""}
             </h2>
 
             <div className="flex flex-wrap gap-2">
@@ -231,17 +265,64 @@ export default function GameUI() {
                 <p className="text-red-600 text-sm">No valid actions</p>
               )}
 
-              {actions.map((act) => (
-                <button
-                  key={act}
-                  disabled={loading}
-                  onClick={() => sendAction(act)}
-                  className="px-3 py-1.5 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 text-sm active:scale-95 transition"
-                >
-                  {act}
-                </button>
-              ))}
+              {actions.map((act) => {
+                const winProb = actionEvaluations[act];
+                return (
+                  <div key={act} className="relative group">
+                    <button
+                      disabled={loading}
+                      onClick={() => sendAction(act)}
+                      className="px-3 py-1.5 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 text-sm active:scale-95 transition flex items-center gap-1"
+                    >
+                      {act}
+                      {winProb !== undefined && (
+                        <span
+                          className={`ml-1 text-xs font-bold px-2 py-0.5 rounded-full ${
+                            winProb > 0.8
+                              ? "bg-green-400 text-green-900"
+                              : winProb > 0.5
+                                ? "bg-yellow-400 text-yellow-900"
+                                : "bg-red-400 text-red-900"
+                          }`}
+                        >
+                          {(winProb * 100).toFixed(0)}%
+                        </span>
+                      )}
+                    </button>
+                    {winProb !== undefined && (
+                      <div className="hidden group-hover:block absolute bottom-full left-0 mb-2 bg-slate-900 text-white text-xs py-1 px-2 rounded whitespace-nowrap">
+                        Win probability: {(winProb * 100).toFixed(1)}%
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
+          </div>
+
+          {/* AI PANEL */}
+          {aiEnabled && (
+            <AIPanel
+              enabled={aiEnabled}
+              onSuggestionClick={(action) => sendAction(action)}
+            />
+          )}
+
+          {/* AI TOGGLE */}
+          <div className="bg-white shadow-lg rounded-xl p-5 border border-slate-200">
+            <button
+              onClick={() => {
+                setAIEnabled(!aiEnabled);
+                localStorage.setItem("ai_enabled", (!aiEnabled).toString());
+              }}
+              className={`w-full px-4 py-2 rounded-lg font-semibold transition ${
+                aiEnabled
+                  ? "bg-purple-600 text-white hover:bg-purple-700"
+                  : "bg-slate-300 text-slate-700 hover:bg-slate-400"
+              }`}
+            >
+              {aiEnabled ? "🤖 AI Enabled" : "🚫 AI Disabled"}
+            </button>
           </div>
 
           {/* GAME LOG — NOW SCROLLABLE + CONTINUOUS */}
